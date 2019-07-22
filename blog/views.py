@@ -14,3 +14,10 @@ def blog_list(request):
     context['blogs'] = blogs
     context['categories'] = categories
     return render(request, 'blog.html', context=context)
+
+
+def blog_detail(request, blog_id):
+    blog = Blog.objects.get(id=blog_id)
+    blog.see += 1
+    blog.save()
+    return HttpResponse("第%s个博客详细界面" % blog_id)

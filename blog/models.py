@@ -21,6 +21,8 @@ class Blog(models.Model):
     body = models.TextField()
     # 设置自动添加时间戳
     published = models.DateTimeField(auto_now_add=True)
+    #浏览量
+    see = models.IntegerField(default=0)
 
     class Meta:
         # 按时间倒序排列在后台管理器
