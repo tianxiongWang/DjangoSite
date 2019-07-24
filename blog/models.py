@@ -23,6 +23,8 @@ class Blog(models.Model):
     published = models.DateTimeField(auto_now_add=True)
     #浏览量
     see = models.IntegerField(default=0)
+    #增加点赞量
+    # like = models.IntegerField(default=0)
 
     class Meta:
         # 按时间倒序排列在后台管理器
