@@ -21,7 +21,8 @@ def blog_detail(request, blog_id):
     blog.save()
     return HttpResponse("第%s个博客详细界面" % blog_id)
 
-
+#用ajax加载的动态显示，传给前端方便解析，我用逗号隔开每个元素。
+#下面注释掉的代码是不用ajax方式加载
 def blog_view(request):
     blogs = Blog.objects.all()
     List = list()
