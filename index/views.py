@@ -8,7 +8,11 @@ def index(request):
     blogs = Blog.objects.all()
     context = dict()
     context['categories'] = categories
-    context['blogNum'] = len(blogs)
+    blogNum = len(blogs)
+    # 增加判定，判断到底有几篇博客
+    if blogNum >= 4:
+        blogNum = 4
+    context['blogNum'] = blogNum
     if len(blogs) > 4:
         blogs = blogs[0:4]
     context['blogs'] = blogs
