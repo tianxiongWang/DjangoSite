@@ -153,15 +153,15 @@
                 <!-- 从这往下每一个row都是侧边栏 -->
                 <div class=" row" style="background: white;">
                     <h1 class="text-center" style="background: #F5F5F5;padding: 5px 0;">文章分类</h1>
-                    <dl class="dl-horizontal">
-                        <dt>技术空间</dt>
-                        <dd>分享、研究有关IT技术的一切</dd>
-                        <dt>生活琐事</dt>
-                        <dd></dd>
-                        <dt>游戏频道</dt>
-                        <dd></dd>
-                        <dt>情感生活</dt>
-                        <dd></dd>
+                    <dl>
+                        {% for category in categories %}
+                        <dt>
+                            {{category.name}}
+                        </dt>
+                        <dd>
+                            {{category.introduce}}
+                        </dd>
+                        {% endfor %}
                     </dl>
                 </div>
                 <div class=" row" style="background: white;">
