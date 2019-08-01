@@ -7,11 +7,13 @@ from .models import Blog, Category
 def blog_list(request):
     categories = Category.objects.all()
     blogs = Blog.objects.all()
+    blogs_see = blogs.order_by('-see')
     for blog in blogs:
         blog.published = blog.published.strftime("%Y-%m-%d %H:%I:%S")
     context = {}
     context['blogs'] = blogs
     context['categories'] = categories
+    context['blogs_see'] = blogs_see[0:5]
     return render(request, 'blog.html', context=context)
 
 
@@ -29,9 +31,3 @@ def blog_view(request):
     for blog in blogs:
         List.append(str(blog.see) + ',')
     return HttpResponse(List)
-# def blog_like(request):
-#     blog_id = request.GET.get('blog_id')
-#     blog = Blog.objects.get(id=blog_id)
-#     blog.like += 1
-#     blog.save()
-#     return HttpResponse('OK')

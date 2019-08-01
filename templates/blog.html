@@ -69,10 +69,9 @@
                                 </div>
                                 <!-- 在这里设置浏览量 -->
                                 <div class="col-md-1 viewNum"><span class="glyphicon glyphicon-eye-open"></span>
-                                   
+
                                 </div>
-                                <div class="col-md-1"><span
-                                        class="glyphicon glyphicon-heart-empty"></span>
+                                <div class="col-md-1"><span class="glyphicon glyphicon-heart-empty"></span>
                                 </div>
                                 <div class="col-md-1"><span class="glyphicon glyphicon-pencil"></span>
                                 </div>
@@ -151,9 +150,10 @@
                     </div>
                 </div>
                 <!-- 从这往下每一个row都是侧边栏 -->
+                <!-- 博客分类 -->
                 <div class=" row" style="background: white;">
                     <h1 class="text-center" style="background: #F5F5F5;padding: 5px 0;">文章分类</h1>
-                    <dl>
+                    <dl style="padding-left: 15px;">
                         {% for category in categories %}
                         <dt>
                             {{category.name}}
@@ -170,8 +170,14 @@
                 <div class=" row" style="background: white;">
                     <h1 class="text-center" style="background: #F5F5F5;padding: 5px 0;">文章归档</h1>
                 </div>
+                <!-- 热门文章 -->
                 <div class=" row" style="background: white;">
                     <h1 class="text-center" style="background: #F5F5F5;padding: 5px 0;">热门文章</h1>
+                    {% for bolg_see in blogs_see %}
+                    <p style="padding-left: 15px;"><strong>{{bolg_see.title}}</strong></p>
+                    <p class="small" style="padding-left: 15px;"><span
+                            class="glyphicon glyphicon-eye-open">浏览量：{{bolg_see.see}}</span></p>
+                    {% endfor %}
                 </div>
                 <div class=" row" style="background: white;">
                     <h1 class="text-center" style="background: #F5F5F5;padding: 5px 0;">最近评论</h1>
