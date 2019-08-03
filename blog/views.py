@@ -20,7 +20,6 @@ def blog_list(request):
     yearMonth = []
     for count in counter:
         yearMonth.append(("%s年%s月" % (count), counter[count]))
-    print(yearMonth)
     context = {}
     context['blogs'] = blogs
     context['categories'] = categories
