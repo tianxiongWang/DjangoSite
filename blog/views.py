@@ -26,7 +26,7 @@ def blog_list(request):
     # 最受欢迎的五篇博客
     context['blogs_see'] = blogs_see[0:5]
     context['yearMonth'] = yearMonth
-    return render(request, 'blog.html', context=context)
+    return render(request, 'blog/blog.html', context=context)
 
 
 def blog_detail(request, blog_id):
