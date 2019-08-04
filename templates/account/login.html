@@ -2,3 +2,13 @@
 {% block title %}
 欢迎登陆
 {% endblock %}
+{% block content %}
+<div class="row text-center">
+    <h1>Login</h1>
+    <p>请输入账号密码</p>
+    <form action="." class="form-horizontal" method="POST">{% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Login">
+    </form>
+</div>
+{% endblock %}

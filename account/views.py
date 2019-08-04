@@ -17,7 +17,7 @@ def user_login(request):
         # 判断用户输入是否合法
         if login_form.is_valid():
             # 用键值对存储了表单中的数据
-            data = login_form.cleaned_data()
+            data = login_form.cleaned_data
             user = authenticate(username=data['username'], password=data['password'])
             if user:
                 login(request, user)
