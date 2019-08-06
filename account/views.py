@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
 from .forms import LoginForm
@@ -21,7 +21,8 @@ def user_login(request):
             user = authenticate(username=data['username'], password=data['password'])
             if user:
                 login(request, user)
-                return HttpResponse('已经验证成功')
+                request.session['username'] = data['username']
+                return redirect('/')
             else:
                 return HttpResponse('账号或密码错误')
         else:

@@ -1,0 +1,15 @@
+{% extends "base_cn.html" %}
+{% block title %}
+退出界面
+{% endblock %}
+{% block content %}
+<div class="row text-center" style="font-family: '微软雅黑';">
+    <!-- 这个页面要展示一下js技术，写一个定时器 -->
+    <h1>您已成功退出!感谢使用</h1>
+    <p id="logout">3秒后将跳回主页</p>
+    <h2>
+        <p>是否需要再次<a href="/account/login">登录</a>？</p>
+    </h2>
+    <script src="/static/js/logout.js"></script>
+</div>
+{% endblock %}
