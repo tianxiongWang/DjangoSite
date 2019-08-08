@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
-from .forms import LoginForm
+from .forms import LoginForm, SignUpForm
 
 # Create your views here.
 def user_login(request):
@@ -27,3 +27,9 @@ def user_login(request):
                 return HttpResponse('账号或密码错误')
         else:
             return HttpResponse('登录内容有误')
+
+def user_signup(request):
+    signup_form = SignUpForm()
+    context = {}
+    context['form'] = signup_form
+    return render(request, 'account/signUp.html', context=context)

@@ -5,6 +5,8 @@ from django.contrib.auth.models import User
 
 
 class UserProfile(models.Model):
-    mobile = models.CharField(max_length=11)
-    email = models.EmailField()
-    nickname = models.OneToOneField(User, on_delete=models.CASCADE)
+    mobile = models.IntegerField(default=0)
+    email = models.EmailField(default=' ')
+    nickname = models.CharField(default="user",max_length=30)
+    username = models.OneToOneField(User, on_delete=models.CASCADE, default=None)
+    QQ = models.IntegerField()
