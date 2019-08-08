@@ -6,6 +6,7 @@ class LoginForm(forms.Form):
 
 class SignUpForm(forms.ModelForm):
     username = forms.CharField()
+    password = forms.CharField(widget=forms.PasswordInput)
     class Meta:
         model = UserProfile
-        fields = ['mobile', 'email', 'nickname', 'QQ']
+        fields = ['username', 'password', 'mobile', 'email', 'nickname', 'QQ']
