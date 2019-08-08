@@ -1,0 +1,10 @@
+{% extends "base_cn.html" %}
+{% block title %}
+注册界面
+{% endblock %}
+{% block content %}
+<form class="form-horizontal" method="POST">{% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Login">
+</form>
+{% endblock %}
