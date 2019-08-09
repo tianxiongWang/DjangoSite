@@ -35,4 +35,5 @@ def user_signup(request):
         context['form'] = signup_form
         return render(request, 'account/signUp.html', context=context)
     else:
+        print(request.POST)
         return HttpResponse("提交成功")

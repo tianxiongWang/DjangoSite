@@ -4,7 +4,7 @@
 {% endblock %}
 {% block content %}
 <div class="container">
-    <h1 class="text-center">欢&nbsp;迎&nbsp;加&nbsp;入</h1>
+    <h1 class="text-center" style="margin-bottom: 15px;">欢&nbsp;迎&nbsp;加&nbsp;入</h1>
     <!-- 表单样式非常难看，用JS来重写样式（因为以我的水平没法给生成的表单加属性，只能用js -->
     <form class="form-horizontal" action="/account/signup/" method="POST">{% csrf_token %}
         <div class="form-group">
