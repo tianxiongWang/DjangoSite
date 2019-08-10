@@ -79,6 +79,7 @@ window.onload = function () {
             document.getElementsByClassName("check")[3].children[0].setAttribute("style", "color:red;");
         }
     }
+    // 前端验证电子邮箱，用正则表达式匹配
     email.onblur = function () {
         var patrn = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
         var Edress = email.value;
@@ -92,6 +93,38 @@ window.onload = function () {
             document.getElementsByClassName("check")[5].innerHTML = "<span></span>&nbsp;请填写正确的邮箱";
             document.getElementsByClassName("check")[5].children[0].setAttribute("class", "glyphicon glyphicon-remove");
             document.getElementsByClassName("check")[5].children[0].setAttribute("style", "color:red;");
+        }
+    }
+    //前端验证昵称，正则表达式匹配
+    nickname.onblur = function () {
+        var patrn = /^[\w\d]+$/;
+        var nick = nickname.value;
+        check7 = patrn.test(nick);
+        if (check7 == true) {
+            document.getElementsByClassName("check")[6].innerHTML = "<span></span>&nbsp;可选取本昵称";
+            document.getElementsByClassName("check")[6].children[0].setAttribute("class", "glyphicon glyphicon-ok");
+            document.getElementsByClassName("check")[6].children[0].setAttribute("style", "color:green;");
+        }
+        if (check7 == false) {
+            document.getElementsByClassName("check")[6].innerHTML = "<span></span>&nbsp;昵称格式不对";
+            document.getElementsByClassName("check")[6].children[0].setAttribute("class", "glyphicon glyphicon-remove");
+            document.getElementsByClassName("check")[6].children[0].setAttribute("style", "color:red;");
+        }
+    }
+    // 前端验证qq号码，正则表达式匹配
+    QQ.onblur = function () {
+        var patrn = /^[\d]{4,10}$/;
+        var qq = QQ.value;
+        check8 = patrn.test(qq);
+        if (check8 == true) {
+            document.getElementsByClassName("check")[7].innerHTML = "<span></span>&nbsp;是一个可用的QQ";
+            document.getElementsByClassName("check")[7].children[0].setAttribute("class", "glyphicon glyphicon-ok");
+            document.getElementsByClassName("check")[7].children[0].setAttribute("style", "color:green;");
+        }
+        if (check8 == false) {
+            document.getElementsByClassName("check")[7].innerHTML = "<span></span>&nbsp;这不是QQ号码哦";
+            document.getElementsByClassName("check")[7].children[0].setAttribute("class", "glyphicon glyphicon-remove");
+            document.getElementsByClassName("check")[7].children[0].setAttribute("style", "color:red;");
         }
     }
 }
