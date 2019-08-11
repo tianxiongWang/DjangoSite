@@ -4,7 +4,7 @@ var password_repeat = document.getElementById("password_repeat");
 var mobile = document.getElementById("mobile");
 var mobile_identy = document.getElementById("mobile_identy");
 // 提前设置好全局变量，这个值是从后台ajax发来的
-var idendy = ""
+var identy = "12";
 var mobile_button = document.getElementById("mobile_button");
 var email = document.getElementById("email");
 var nickname = document.getElementById("nickname");
@@ -24,17 +24,26 @@ window.onload = function () {
         //js的正则表达式,很有必要
         var patrn = /^[a-zA-Z0-9._/]{5,20}$/;
         var usr = username.value;
-        check1 = patrn.test(usr);
-        if (check1 == true) {
-            document.getElementsByClassName("check")[0].innerHTML = "<span></span>&nbsp;该用户名合法";
-            document.getElementsByClassName("check")[0].children[0].setAttribute("class", "glyphicon glyphicon-ok");
-            document.getElementsByClassName("check")[0].children[0].setAttribute("style", "color:green;");
+        var xhr = new XMLHttpRequest();
+        var usrResponse = ""
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                usrResponse = xhr.responseText;
+                if (usrResponse == "OK" && patrn.test(usr)) {
+                    check1 = true;
+                    document.getElementsByClassName("check")[0].innerHTML = "<span></span>&nbsp;该用户名合法";
+                    document.getElementsByClassName("check")[0].children[0].setAttribute("class", "glyphicon glyphicon-ok");
+                    document.getElementsByClassName("check")[0].children[0].setAttribute("style", "color:green;");
+                } else {
+                    check1 = false;
+                    document.getElementsByClassName("check")[0].innerHTML = "<span></span>&nbsp;用户名不合法或与已有用户重复";
+                    document.getElementsByClassName("check")[0].children[0].setAttribute("class", "glyphicon glyphicon-remove");
+                    document.getElementsByClassName("check")[0].children[0].setAttribute("style", "color:red;");
+                }
+            }
         }
-        if (check1 == false) {
-            document.getElementsByClassName("check")[0].innerHTML = "<span></span>&nbsp;长度应在5到20位;可以是字母、数字、下划线";
-            document.getElementsByClassName("check")[0].children[0].setAttribute("class", "glyphicon glyphicon-remove");
-            document.getElementsByClassName("check")[0].children[0].setAttribute("style", "color:red;");
-        }
+        xhr.open("get", "/ajax/username?username=" + usr, true);
+        xhr.send(null);
     }
     //验证密码函数
     password.onblur = function () {
@@ -90,7 +99,7 @@ window.onload = function () {
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4 && xhr.status == 200) {
-                    idendy = xhr.responseText;
+                    identy = xhr.responseText;
                 }
             }
             xhr.open("get", "/ajax/message?num=" + num, true);
@@ -149,11 +158,19 @@ window.onload = function () {
     }
 }
 
-if (mobile_identy.value == idendy) {
-    check5 = true;
-}
 
 function checkForm() {
+    if (mobile_identy.value == identy) {
+        check5 = true;
+    }
+    console.log("check1:", check1);
+    console.log("check2:", check2);
+    console.log("check3:", check3);
+    console.log("check4:", check4);
+    console.log("check5:", check5);
+    console.log("check6:", check6);
+    console.log("check7:", check7);
+    console.log("check8:", check8);
     if (check1 && check2 && check3 && check4 && check5 && check6 && check7 && check8) {
         return true;
     } else {
