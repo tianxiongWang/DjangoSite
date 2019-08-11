@@ -3,17 +3,20 @@ var password = document.getElementById("password");
 var password_repeat = document.getElementById("password_repeat");
 var mobile = document.getElementById("mobile");
 var mobile_identy = document.getElementById("mobile_identy");
+// 提前设置好全局变量，这个值是从后台ajax发来的
+var idendy = ""
+var mobile_button = document.getElementById("mobile_button");
 var email = document.getElementById("email");
 var nickname = document.getElementById("nickname");
 var QQ = document.getElementById("QQ");
-var check1 = 0, //验证用户名
-    check2 = 0, //验证密码
-    check3 = 0, //确认密码
-    check4 = 0, //手机号码
-    check5 = 0, //短信验证码
-    check6 = 0, //电子邮箱
-    check7 = 0, //昵称
-    check8 = 0; //QQ号码
+var check1 = false, //验证用户名
+    check2 = false, //验证密码
+    check3 = false, //确认密码
+    check4 = false, //手机号码
+    check5 = false, //短信验证码
+    check6 = false, //电子邮箱
+    check7 = false, //昵称
+    check8 = false; //QQ号码
 
 window.onload = function () {
     //验证用户名函数
@@ -79,6 +82,23 @@ window.onload = function () {
             document.getElementsByClassName("check")[3].children[0].setAttribute("style", "color:red;");
         }
     }
+    //短信验证，发送ajax请求
+    mobile_button.onclick = function () {
+        var num = mobile.value;
+        if (check4 == true) {
+            alert("已发送验证码到" + num);
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    idendy = xhr.responseText;
+                }
+            }
+            xhr.open("get", "/ajax/message?num=" + num, true);
+            xhr.send(null);
+        } else {
+            alert("手机号码不对是不能发送验证码的");
+        }
+    }
     // 前端验证电子邮箱，用正则表达式匹配
     email.onblur = function () {
         var patrn = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
@@ -129,8 +149,14 @@ window.onload = function () {
     }
 }
 
+if (mobile_identy.value == idendy) {
+    check5 = true;
+}
 
 function checkForm() {
-    alert(check1);
-    return false;
+    if (check1 && check2 && check3 && check4 && check5 && check6 && check7 && check8) {
+        return true;
+    } else {
+        return false;
+    }
 }
