@@ -30,10 +30,12 @@ def user_login(request):
 
 def user_signup(request):
     if request.method == 'GET':
-        signup_form = SignUpForm()
-        context = {}
-        context['form'] = signup_form
-        return render(request, 'account/signUp.html', context=context)
+        # signup_form = SignUpForm()
+        # context = {}
+        # context['form'] = signup_form
+        return render(request, 'account/signUp.html'\
+            # , context=context
+        )
     else:
         print(request.POST)
         return HttpResponse("提交成功")
