@@ -22,4 +22,5 @@ urlpatterns = [
     path('', include('index.urls')),
     path('blog/', include('blog.urls')),
     path('account/', include('account.urls')),
+    path('ajax/', include('ajax.urls')),
 ]

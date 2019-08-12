@@ -35,6 +35,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'ajax',
     'account',
     'blog',
     'django.contrib.admin',

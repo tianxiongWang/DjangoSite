@@ -29,7 +29,13 @@ def user_login(request):
             return HttpResponse('登录内容有误')
 
 def user_signup(request):
-    signup_form = SignUpForm()
-    context = {}
-    context['form'] = signup_form
-    return render(request, 'account/signUp.html', context=context)
+    if request.method == 'GET':
+        # signup_form = SignUpForm()
+        # context = {}
+        # context['form'] = signup_form
+        return render(request, 'account/signUp.html'\
+            # , context=context
+        )
+    else:
+        print(request.POST)
+        return HttpResponse("提交成功")
