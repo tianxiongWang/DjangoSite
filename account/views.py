@@ -48,4 +48,4 @@ def user_signup(request):
         userProfile.QQ = request.POST['QQ']
         user.save()
         userProfile.save()
-        return HttpResponse("提交成功")
+        return redirect('/')
