@@ -55,5 +55,8 @@ def user_signup(request):
         userProfile.QQ = request.POST['QQ']
         user.save()
         userProfile.save()
-        request.session['username'] = request.POST['username']
+        login(request, authenticate(
+            username=user.username, password=request.POST['password']))
+        request.session['username'] = user.username
+        print(request.session)
         return redirect('/')
