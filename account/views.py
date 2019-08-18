@@ -25,6 +25,7 @@ def user_login(request):
         if login_form.is_valid():
             # 用键值对存储了表单中的数据
             data = login_form.cleaned_data
+            print(data)
             user = authenticate(
                 username=data['username'], password=data['password'])
             if user:
@@ -46,7 +47,7 @@ def user_signup(request):
     else:
         user = User.objects.create_user(username=request.POST['username'])
         userProfile = UserProfile.objects.create(user=user)
-        user.password = request.POST['password']
+        user.set_password(request.POST['password'])
         userProfile.user = user
         userProfile.mobile = request.POST['mobile']
         userProfile.email = request.POST['email']
@@ -54,4 +55,5 @@ def user_signup(request):
         userProfile.QQ = request.POST['QQ']
         user.save()
         userProfile.save()
+        request.session['username'] = request.POST['username']
         return redirect('/')
