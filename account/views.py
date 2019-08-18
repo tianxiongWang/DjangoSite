@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login
 from .forms import LoginForm, SignUpForm
 from django.contrib.auth.models import User
 from .models import UserProfile
+from blog.models import Category
 
 # Create your views here.
 
@@ -11,9 +12,11 @@ from .models import UserProfile
 def user_login(request):
     if request.method == 'GET':
         # 自动生成表单
+        categories = Category.objects.all()
         login_form = LoginForm()
         context = {}
         context['form'] = login_form
+        context['categories'] = categories
         return render(request, "account/login.html", context=context)
     if request.method == 'POST':
         # 用POST请求来初始化表单
@@ -36,7 +39,10 @@ def user_login(request):
 
 def user_signup(request):
     if request.method == 'GET':
-        return render(request, 'account/signUp.html')
+        categories = Category.objects.all()
+        context = {}
+        context['categories'] = categories
+        return render(request, 'account/signUp.html', context=context)
     else:
         user = User.objects.create_user(username=request.POST['username'])
         userProfile = UserProfile.objects.create(user=user)
