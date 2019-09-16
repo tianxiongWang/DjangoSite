@@ -43,3 +43,9 @@ def blog_view(request):
     for blog in blogs:
         List.append(str(blog.see) + ',')
     return HttpResponse(List)
+
+def blog_write(request):
+    categories = Category.objects.all()
+    context = {}
+    context['categories'] = categories
+    return render(request, 'blog/write.html', context=context)

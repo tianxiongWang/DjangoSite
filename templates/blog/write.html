@@ -1,0 +1,37 @@
+{% extends "base_cn.html" %}
+{% block title %}
+发表博客
+{% endblock %}
+{% block content %}
+<div class="container">
+    <h1 class="text-center" style="margin-bottom: 15px;">发&nbsp;表&nbsp;博&nbsp;客</h1>
+    <!-- 表单样式非常难看，用JS来重写样式（因为以我的水平没法给生成的表单加属性，只能用js -->
+    <form onsubmit="return checkForm();" class="form-horizontal" action="/account/signup/" method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="username" class="col-sm-2 control-label">用户名</label>
+            <div class=" col-sm-5">
+                <input type="text" name="username" id="username" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="username" class="col-sm-2 control-label">分类</label>
+            <div class=" col-sm-5">
+                <select class="form-control">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="username" class="col-sm-2 control-label">内容</label>
+            <div class=" col-sm-5">
+                <textarea name="" id="" cols="30" rows="10"></textarea>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}
