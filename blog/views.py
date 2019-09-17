@@ -45,7 +45,10 @@ def blog_view(request):
     return HttpResponse(List)
 
 def blog_write(request):
-    categories = Category.objects.all()
-    context = {}
-    context['categories'] = categories
-    return render(request, 'blog/write.html', context=context)
+    if request.method == 'GET':
+        categories = Category.objects.all()
+        context = {}
+        context['categories'] = categories
+        return render(request, 'blog/write.html', context=context)
+    if request.method == 'POST':
+        return HttpResponse("发表博客")
